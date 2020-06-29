@@ -51,11 +51,6 @@ RUN source activate ngs_base &&\
     pip install git+git://github.com/mirnylab/pairlib@34691e24b5c36b8f48266fb386b32b9fbd1210d6 &&\
     echo "# pip install git+git://github.com/mirnylab/pairlib@34691e24b5c36b8f48266fb386b32b9fbd1210d6" >> software_versions_list.txt &&\
     # Install gerlich repos and safe the latest git hash
-    # ngs
-    githash=`git ls-remote https://github.com/gerlichlab/ngs.git | grep HEAD | cut -f 1` &&\
-    echo "GITHASH: $githash " &&\
-    pip install git+git://github.com/gerlichlab/ngs@$githash &&\
-    echo "# pip install git+git://github.com/gerlichlab/ngs@$githash" >> software_versions.txt &&\
     # cooler_ontad
     githash=`git ls-remote https://github.com/cchlanger/cooler_ontad.git | grep HEAD | cut -f 1` &&\
     pip install git+git://github.com/cchlanger/cooler_ontad@$githash &&\
