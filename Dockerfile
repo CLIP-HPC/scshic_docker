@@ -43,13 +43,19 @@ WORKDIR /home
 RUN source activate ngs_base &&\
     # Creates a file into the container that logs which version conda installs and all pip installs
     conda list > software_versions.txt &&\
-    # Install mirnylabtools - frozen
-    pip install git+git://github.com/mirnylab/bioframe@40ca346f8726cf809a16fca4df21298f7c096dc3 &&\
-    echo "# pip install git+git://github.com/mirnylab/bioframe@40ca346f8726cf809a16fca4df21298f7c096dc3" >> software_versions.txt &&\
-    pip install git+git://github.com/mirnylab/cooltools@26b885356e5fd81dd6f34ef688edc45a020ca9d0 &&\
-    echo "# pip install git+git://github.com/mirnylab/cooltools@26b885356e5fd81dd6f34ef688edc45a020ca9d0" >> software_versions.txt &&\
-    pip install git+git://github.com/mirnylab/pairlib@34691e24b5c36b8f48266fb386b32b9fbd1210d6 &&\
-    echo "# pip install git+git://github.com/mirnylab/pairlib@34691e24b5c36b8f48266fb386b32b9fbd1210d6" >> software_versions_list.txt &&\
+    # Install mirnylabtools
+    # bioframe
+    githash=`git ls-remote https://github.com/mirnylab/bioframe.git | grep HEAD | cut -f 1` &&\
+    pip install git+git://github.com/mirnylab/bioframe@$githash &&\
+    echo "# pip install git+git://github.com/mirnylab/bioframe@$githash" >> software_versions.txt &&\
+    # cooltools
+    githash=`git ls-remote https://github.com/mirnylab/cooltools.git | grep HEAD | cut -f 1` &&\
+    pip install git+git://github.com/mirnylab/cooltools@$githash &&\
+    echo "# pip install git+git://github.com/mirnylab/cooltools@$githash" >> software_versions.txt &&\
+    # pairlib
+    githash=`git ls-remote https://github.com/mirnylab/pairlib.git | grep HEAD | cut -f 1` &&\
+    pip install git+git://github.com/mirnylab/pairlib@$githash &&\
+    echo "# pip install git+git://github.com/mirnylab/pairlib@$githash" >> software_versions_list.txt &&\
     # Install gerlich repos and safe the latest git hash
     # cooler_ontad
     githash=`git ls-remote https://github.com/cchlanger/cooler_ontad.git | grep HEAD | cut -f 1` &&\
