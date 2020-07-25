@@ -43,6 +43,7 @@ dependencies:
   - pytest
   # packages to facility development with vscode inside the container
   - pylama
+  - pylint >= 2.5.3 #needed for fail-under
   - black
   # parquet support
   - pyensembl
